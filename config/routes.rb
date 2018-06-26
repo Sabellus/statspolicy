@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :interviewees
   resources :operations
   resources :politicians
   resources :territories
