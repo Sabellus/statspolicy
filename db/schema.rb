@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(version: 20180629093305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "interviews", force: :cascade do |t|
-    t.bigint "politician_id"
-    t.bigint "inteviewee_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["inteviewee_id"], name: "index_interviews_on_inteviewee_id"
-    t.index ["politician_id"], name: "index_interviews_on_politician_id"
-  end
-
   create_table "operations", force: :cascade do |t|
     t.string "name"
     t.boolean "success", default: false

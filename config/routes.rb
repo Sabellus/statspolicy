@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :voters
   resources :politicians
   resources :territories
