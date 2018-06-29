@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626095530) do
+ActiveRecord::Schema.define(version: 20180629093305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interviewees", force: :cascade do |t|
+    t.string "last_name"
+    t.string "age"
+    t.string "sex"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.bigint "politician_id"
+    t.bigint "inteviewee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inteviewee_id"], name: "index_interviews_on_inteviewee_id"
+    t.index ["politician_id"], name: "index_interviews_on_politician_id"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.string "name"
+    t.boolean "success", default: false
+    t.bigint "politician_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["politician_id"], name: "index_operations_on_politician_id"
+  end
 
   create_table "politicians", force: :cascade do |t|
     t.string "last_name"
@@ -27,6 +54,14 @@ ActiveRecord::Schema.define(version: 20180626095530) do
 
   create_table "territories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "voters", force: :cascade do |t|
+    t.string "last_name"
+    t.string "sex"
+    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
