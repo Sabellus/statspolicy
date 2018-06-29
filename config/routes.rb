@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
-  resources :interviewees
-  resources :operations
+  resources :voters
   resources :politicians
   resources :territories
   root 'page#index'

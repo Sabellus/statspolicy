@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to new_voter_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Voter
+  <% end %>
+  <h1>Listing voters</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Last name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @voters.each do |voter| %>
+        <%= content_tag :tr, id: dom_id(voter), class: dom_class(voter) do %>
+                      <td><%= voter.last_name %></td>
+                      <td><%= voter.sex %></td>
+                      <td><%= voter.age %></td>
+                    <td><%= link_to 'Show', voter %></td>
+          <td><%= link_to 'Edit', edit_voter_path(voter) %></td>
+          <td><%= link_to 'Destroy', voter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

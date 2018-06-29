@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to voters_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_voter_path(@voter), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show voter</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Last name:</dt>
+  <dd><%= @voter.last_name %></dd>
+
+  <dt>Sex:</dt>
+  <dd><%= @voter.sex %></dd>
+
+  <dt>Age:</dt>
+  <dd><%= @voter.age %></dd>
+
+</dl>
