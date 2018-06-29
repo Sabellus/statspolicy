@@ -21,6 +21,7 @@ class VotersController < ApplicationController
   def edit
   end
 
+
   # POST /voters
   # POST /voters.json
   def create
