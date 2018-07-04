@@ -13,5 +13,64 @@
 <dl class="dl-horizontal">
   <dt>Name:</dt>
   <dd><%= @interview.name %></dd>
-
+  <dd><%=link_to "Проголосовать",new_interview_vote_path(@interview)%></dd>
 </dl>
+<h4>Vote new:</h4>
+
+ <%= form_for [@interview, @vote] do |f|%>
+ Заполните данные:
+<%= fields_for @voter do |t|%>
+    <div class="form-group">
+
+      <%= t.label :last_name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= t.text_field :last_name, class: "form-control" %>
+      </div>
+
+    </div>
+    <div class="form-group">
+
+      <%= t.label :sex, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= t.text_field :sex, class: "form-control" %>
+      </div>
+    </div>
+
+   <div class="form-group">
+    <%= t.label :age, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= t.collection_select :age, ['от 20','от 20 до 40','от 40 до 60','от 60'], :itself, :itself, { include_black: true }, class: "form-control"%>
+    </div>
+    </div>
+  <% end %>
+
+  <% 5.times do |i| %>
+    <div class="form-group">
+      <%= label_tag "vote[politicians][#{i+1}]", "№#{i+1}", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= select_tag "vote[politicians][]", options_from_collection_for_select(Politician.order(:last_name), :id, :last_name, ''), include_blank: true, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+  <%end%>
+
+<h4>Votes:</h4>
+<% @votes.each do |a| %>
+ <p>
+ Депутат:
+ <%= a.politician ? a.politician.last_name : 'воздержался' %>,
+ Голос:
+ <%= a.vote %>,
+ Опрашиваемый:
+ <%= a.voter.last_name%>
+ Дата:
+ <%= a.created_at%>
+ </p>
+ <% end %>
+

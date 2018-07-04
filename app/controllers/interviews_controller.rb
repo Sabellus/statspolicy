@@ -10,6 +10,9 @@ class InterviewsController < ApplicationController
   # GET /interviews/1
   # GET /interviews/1.json
   def show
+    @votes = @interview.votes
+    @vote = Vote.new
+    @voter = Voter.new
   end
 
   # GET /interviews/new

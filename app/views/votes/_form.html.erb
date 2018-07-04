@@ -13,13 +13,35 @@
   <% end %>
 
   <div class="form-group">
-    
+
       <%= f.label :vote, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.number_field :vote, class: "form-control" %>
       </div>
-    
+
   </div>
+
+  <div class="form-group">
+    <%= f.label :politician_id , class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :politician_id , Politician.order(:last_name), :id, :last_name, { include_black: true }, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :voter_id , class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :voter_id , Voter.order(:last_name), :id, :last_name, { include_black: true }, class: "form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :interview_id , class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :interview_id , Interview.order(:name), :id, :name, { include_black: true }, class: "form-control"%>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit class: "btn btn-primary" %>

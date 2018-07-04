@@ -26,7 +26,6 @@ class VotersController < ApplicationController
   # POST /voters.json
   def create
     @voter = Voter.new(voter_params.merge(age: voter_params[:age].to_i))
-
     respond_to do |format|
       if @voter.save
         format.html { redirect_to @voter, notice: 'Voter was successfully created.' }
